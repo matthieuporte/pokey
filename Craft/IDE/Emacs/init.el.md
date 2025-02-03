@@ -150,6 +150,7 @@ This is our emacs config file.
 
 (setq c-default-style '((c-mode . "awk") ;; default style close from
                         (c++-mode . "awk") ;; the coding style
+                        (java-mode . "java") ;; the coding style
                         (other . "awk")))
 						
 (use-package nyan-mode
