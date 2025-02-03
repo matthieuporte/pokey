@@ -30,6 +30,7 @@ This is our emacs config file.
 (setq gc-cons-threshold 50000000) ; Reduces the freq. of garbage collection
  ; Displays the numbers to the left
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;; (setq display-line-numbers-type 'relative)
 
 
 ;; AUTO-SAVE FILES
@@ -94,10 +95,12 @@ This is our emacs config file.
 ;; --------------
 
 (set-face-attribute 'default nil :font "Inconsolata" :height 120)
+;; (set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 140)
 (use-package zenburn-theme
   :ensure t
-  :config
-  (load-theme 'zenburn t))
+  :config (load-theme 'zenburn t))
+;; (use-package kaolin-themes
+;;   :config (load-theme 'kaolin-dark t))
 
 ;; MINIBUFFER ENHANCEMENTS
 ;; -----------------------
@@ -240,6 +243,12 @@ This is our emacs config file.
   "pa" '(projectile-find-other-file :which-key "find other file")
   "pg" '(counsel-projectile-grep :which-key "grep")
   "pf" '(projectile-find-file :which-key "find file in project"))
+
+(rune/leader-keys
+  "w"  '(:ignore t :which-key "windows")
+  "wv" '(split-window-horizontally :which-key "split window vertically")
+  "wh" '(split-window-vertically :which-key "split window horizontally")
+  "wd" '(delete-window :which-keh "close current window"))
 
 
 ```
