@@ -184,7 +184,7 @@ This is our emacs config file.
   (setq projectile-project-search-path '("~/projects/" "~/work/" "~/playground"))
   :config
   (global-set-key (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode nil))
+  (projectile-mode +1))
 
 (use-package counsel-projectile
  :after projectile
@@ -253,13 +253,44 @@ This is our emacs config file.
   "pp" '(projectile-switch-project :which-key "switch project")
   "pa" '(projectile-find-other-file :which-key "find other file")
   "pg" '(counsel-projectile-grep :which-key "grep")
+  "pd" '(projectile-discover-projects-in-search-path :which-key "discover projects")
   "pf" '(projectile-find-file :which-key "find file in project"))
+
 
 (rune/leader-keys
   "w"  '(:ignore t :which-key "windows")
   "wv" '(split-window-horizontally :which-key "split window vertically")
   "wh" '(split-window-vertically :which-key "split window horizontally")
   "wd" '(delete-window :which-keh "close current window"))
+
+
+;;; SANDBOX
+
+(use-package lsp-mode
+  :hook ((c-mode . lsp)
+	 (c++-mode . lsp)
+	 (java-mode . lsp)
+	 (lsp-mode . lsp-enable-which-key-integration)))
+
+;; java
+(use-package lsp-java :config (add-hook 'java-mode-hook 'lsp))
+
+;; pop-up documentation (vs-code like)
+(use-package lsp-ui :commands lsp-ui-mode)
+
+;; error checking
+(use-package flycheck)
+(use-package flycheck-pos-tip)
+
+;; completion popups
+(use-package company)
+
+;; ivy integration
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+
+;; code snippets
+(use-package yasnippet :config (yas-global-mode))
 
 
 ```
