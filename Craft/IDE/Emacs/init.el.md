@@ -48,7 +48,7 @@ This is our emacs config file.
 ; enable the "package" package for package management
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-						 ("melpa" . "https://melpa.org/packages/")
+			 ("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")))
 
 (package-initialize)
@@ -137,7 +137,7 @@ This is our emacs config file.
 
 ;; live docs for keybinds
 (use-package which-key
-  ;; :init (which-key-mode)
+  :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1)) ;; show help only if unsure
@@ -156,6 +156,12 @@ This is our emacs config file.
 (use-package nyan-mode
   :config
   (nyan-mode 1))
+
+
+;; MAGIT
+;; -----
+
+(use-package magit)
 
 
 ;; DIRED
@@ -192,6 +198,34 @@ This is our emacs config file.
  :config
  (counsel-projectile-mode 1))
 
+
+;; LSP 
+;; ---
+
+(use-package lsp-mode
+  :hook (java-mode . lsp-mode))
+
+(use-package lsp-java
+  :config (setq lsp-java-format-on-type-enabled nil))
+
+(use-package lsp-ui :commands lsp-ui-mode)
+
+(use-package flycheck)
+(use-package flycheck-pos-tip
+  :hook (lsp-mode . flycheck-pos-tip-mode))
+
+(use-package company
+  :hook (prog-mode . company-mode)
+  :config
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+(use-package yasnippet :config (yas-global-mode))
+(use-package java-snippets)
+
+
+
 ;; GENERAL AND HYDRA
 ;; -----------------
 
@@ -205,17 +239,19 @@ This is our emacs config file.
     :global-prefix "C-SPC"))
 
 
-(defun copy-whole-buffer ()
-  "Copy the entire buffer to the kill ring."
-  (interactive)
-  (kill-ring-save (point-min) (point-max)))
 
 
 (rune/leader-keys
   "s"  '(swiper :which-key "swiper"))
 
 (rune/leader-keys
-  "d"  '(lambda () (interactive) (dired default-directory) :which-key "dired"))
+  "d"  '((lambda () (interactive) (dired default-directory)) :which-key "dired"))
+
+(rune/leader-keys
+  "y" '(yas-insert-snippet :which-key "insert snippet"))
+
+(rune/leader-keys
+  "g" '(magit :which-key "magit"))
 
 (rune/leader-keys
   "e"  '(:ignore t :which-key "execute")
@@ -241,8 +277,8 @@ This is our emacs config file.
 
 (rune/leader-keys
   "b"  '(:ignore t :which-key "buffer")
-  "bs" '(hydra-buffer-switch/body :which-key "buffer switch")
   "by" '(copy-whole-buffer :which-key "yank buffer")
+  "bv" '(select-whole-buffer :which-key "select buffer")
   "bl" '(ibuffer :which-key "buffer list")
   "be" '(eval-buffer :which-key "eval buffer")
   "bj" '(next-buffer :which-key "next")
@@ -260,46 +296,49 @@ This is our emacs config file.
 (rune/leader-keys
   "l"  '(:ignore t :which-key "lsp")
   "lr" '(lsp-rename :which-key "rename")
-  "la" '(lsp-execute-code-action :which-key "code action"))
+  "la" '(lsp-execute-code-action :which-key "code action")
+  "ln" '(flycheck-next-error :which-key "next error")
+  "ld" '(:ignore r :which-key "doc")
+  "lds" '(lsp-ui-doc-show :which-key "doc show")
+  "ldh" '(lsp-ui-doc-hide :which-key "doc hide"))
+
 
 (rune/leader-keys
   "w"  '(:ignore t :which-key "windows")
   "wv" '(split-window-horizontally :which-key "split window vertically")
   "wh" '(split-window-vertically :which-key "split window horizontally")
   "wd" '(delete-window :which-keh "close current window"))
+  
 
 
-;; LSP (HIGHLY EXPERIMENTAL)
-;; -------------------------
-
-(use-package lsp-mode
-  :hook (java-mode . lsp-mode))
+;; CUSTOM FUNCTIONS
+;; ----------------
 
 
-(use-package lsp-java
-  :config (setq lsp-java-format-on-type-enabled nil))
+(defun copy-whole-buffer ()
+  "Copy the entire buffer to the kill ring."
+  (interactive)
+  (kill-ring-save (point-min) (point-max)))
 
- 
-;; pop-up documentation (vs-code like)
-(use-package lsp-ui :commands lsp-ui-mode)
-
-;; error checking
-(use-package flycheck)
-(use-package flycheck-pos-tip
-  :hook (lsp-mode . flycheck-pos-tip-mode))
-
-;; completion popups
-(use-package company
-  :hook (prog-mode . company-mode)
-  :config
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
-
-;; ivy integration
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(defun select-whole-buffer ()
+  "Select the entire buffer."
+  (interactive)
+  (goto-char (point-max))
+  (push-mark (point-min))
+  (activate-mark))
 
 
-;; code snippets
-(use-package yasnippet :config (yas-global-mode))
-
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(java-snippets zenburn-theme yasnippet which-key nyan-mode lsp-ui lsp-java lsp-ivy general flycheck-pos-tip evil-numbers evil-commentary evil-collection counsel-projectile company clang-format)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 ```
