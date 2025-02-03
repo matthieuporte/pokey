@@ -151,6 +151,10 @@ This is our emacs config file.
 (setq c-default-style '((c-mode . "awk") ;; default style close from
                         (c++-mode . "awk") ;; the coding style
                         (other . "awk")))
+						
+(use-package nyan-mode
+  :config
+  (nyan-mode 1))
 
 
 ;; DIRED
@@ -180,7 +184,7 @@ This is our emacs config file.
   (setq projectile-project-search-path '("~/projects/" "~/work/" "~/playground"))
   :config
   (global-set-key (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode nil))
 
 (use-package counsel-projectile
  :after projectile
