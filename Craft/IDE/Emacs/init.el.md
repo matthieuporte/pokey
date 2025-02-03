@@ -262,45 +262,32 @@ This is our emacs config file.
   "wv" '(split-window-horizontally :which-key "split window vertically")
   "wh" '(split-window-vertically :which-key "split window horizontally")
   "wd" '(delete-window :which-keh "close current window"))
-  
- ;; LSP (HIGHLY EXPERIMENTAL)
 
-(use-package company
-  :hook (prog-mode . company-mode)
-  :config
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
 
-(use-package lsp-java
-  :config (setq lsp-java-format-on-type-enabled nil))
+;; LSP (HIGHLY EXPERIMENTAL)
+;; -------------------------
 
 (use-package lsp-mode
   :hook (java-mode . lsp-mode))
 
-(use-package flycheck-pos-tip
-  :hook (lsp-mode . flycheck-pos-tip-mode))
+
+(use-package lsp-java
+  :config (setq lsp-java-format-on-type-enabled nil))
+
  
-
-
-;;; SANDBOX
-
-(use-package lsp-mode
-  :hook ((c-mode . lsp)
-	 (c++-mode . lsp)
-	 (java-mode . lsp)
-	 (lsp-mode . lsp-enable-which-key-integration)))
-
-;; java
-(use-package lsp-java :config (add-hook 'java-mode-hook 'lsp))
-
 ;; pop-up documentation (vs-code like)
 (use-package lsp-ui :commands lsp-ui-mode)
 
 ;; error checking
 (use-package flycheck)
-(use-package flycheck-pos-tip)
+(use-package flycheck-pos-tip
+  :hook (lsp-mode . flycheck-pos-tip-mode))
 
 ;; completion popups
-(use-package company)
+(use-package company
+  :hook (prog-mode . company-mode)
+  :config
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
 
 ;; ivy integration
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
