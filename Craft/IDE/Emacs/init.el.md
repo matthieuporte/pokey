@@ -1,4 +1,13 @@
 
+This is our emacs config file.
+
+>[!info]- Tutorials
+> [rtags1](https://martinsosic.com/development/emacs/2017/12/09/emacs-cpp-ide.html#rtags) - [rtags2](https://trivialfis.github.io/emacs/2017/08/02/C-C++-Development-Environment-on-Emacs.html) - [lsp setup](http://tuhdo.github.io/c-ide.html)
+
+>[!danger]- Inspiration
+
+---
+
 ```elisp
 ;;
 ;; clement.pochart and matthiru's
@@ -6,17 +15,8 @@
 ;; o __  o _|_    _  |
 ;; | | | |  |_ o (/_ |
 ;;
-```
-
----
-
->[!info]- Tutorials
-> [rtags1](https://martinsosic.com/development/emacs/2017/12/09/emacs-cpp-ide.html#rtags) - [rtags2](https://trivialfis.github.io/emacs/2017/08/02/C-C++-Development-Environment-on-Emacs.html) - [lsp setup](http://tuhdo.github.io/c-ide.html)
-
->[!danger]- Inspiration
 
 
-```elisp
 ;; SENSIBLE DEFAULTS
 ;; -----------------
 
@@ -129,6 +129,8 @@
 ;; -----------
 
 (use-package avy)
+
+(use-package which-key)
 
 (use-package clang-format
   :commands (clang-format-buffer clang-format-on-save-mode)
