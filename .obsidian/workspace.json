@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Survival/Cooking/Lasagna.md",
-                "mode": "source",
+                "file": "Craft/IDE/Emacs/Init.el.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lasagna"
+              "title": "Init.el"
             }
           }
         ]
@@ -160,13 +160,14 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "cd351c9b59f73fbf",
   "lastOpenFiles": [
-    "Design/What is an OS ?.md",
     "Survival/Cooking/Lasagna.md",
+    "Design/What is an OS ?.md",
     "Survival/Cooking",
     "Survival/Untitled.md",
     "README.md",
