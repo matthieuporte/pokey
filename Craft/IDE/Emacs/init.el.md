@@ -6,6 +6,9 @@ This is our emacs config file.
 
 >[!danger]- Inspiration
 
+>[!abstract]- Lsp setup
+> - bear and gtags
+
 ---
 
 ```elisp
@@ -94,7 +97,6 @@ This is our emacs config file.
 ;; FONT AND THEME
 ;; --------------
 
-(set-face-attribute 'default nil :font "Inconsolata" :height 120)
 ;; (set-face-attribute 'default nil :font "Mononoki Nerd Font Mono" :height 140)
 (use-package zenburn-theme
   :ensure t
@@ -133,7 +135,12 @@ This is our emacs config file.
 
 (use-package avy)
 
-(use-package which-key)
+;; live docs for keybinds
+(use-package which-key
+  ;; :init (which-key-mode)
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 1)) ;; show help only if unsure
 
 (use-package clang-format
   :commands (clang-format-buffer clang-format-on-save-mode)
