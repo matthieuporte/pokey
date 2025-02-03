@@ -262,6 +262,23 @@ This is our emacs config file.
   "wv" '(split-window-horizontally :which-key "split window vertically")
   "wh" '(split-window-vertically :which-key "split window horizontally")
   "wd" '(delete-window :which-keh "close current window"))
+  
+ ;; LSP (HIGHLY EXPERIMENTAL)
+
+(use-package company
+  :hook (prog-mode . company-mode)
+  :config
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection))
+
+(use-package lsp-java
+  :config (setq lsp-java-format-on-type-enabled nil))
+
+(use-package lsp-mode
+  :hook (java-mode . lsp-mode))
+
+(use-package flycheck-pos-tip
+  :hook (lsp-mode . flycheck-pos-tip-mode))
+ 
 
 
 ;;; SANDBOX
