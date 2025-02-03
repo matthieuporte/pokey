@@ -30,6 +30,7 @@
 ;; ---------------
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/autosaves")))
+;; (setq backup-directory-alist `(("." . "~/.emacs-autosaves")))
 
 ;; PACKAGE MANAGEMENT
 ;; ------------------
