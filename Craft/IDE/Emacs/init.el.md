@@ -257,6 +257,10 @@ This is our emacs config file.
   "pd" '(projectile-discover-projects-in-search-path :which-key "discover projects")
   "pf" '(projectile-find-file :which-key "find file in project"))
 
+(rune/leader-keys
+  "l"  '(:ignore t :which-key "lsp")
+  "lr" '(lsp-rename :which-key "rename")
+  "la" '(lsp-execute-code-action :which-key "code action"))
 
 (rune/leader-keys
   "w"  '(:ignore t :which-key "windows")
