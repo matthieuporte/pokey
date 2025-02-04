@@ -230,6 +230,7 @@ This is our emacs config file.
 
 (use-package yasnippet :config (yas-global-mode))
 (use-package java-snippets)
+(use-package maven-test-mode)
 
 
 
@@ -306,6 +307,8 @@ This is our emacs config file.
   "ls" '(lsp-workspace-restart :which-key "restart lsp")
   "la" '(lsp-execute-code-action :which-key "code action")
   "ln" '(flycheck-next-error :which-key "next error")
+  "lm" '(:ignore t :which-key "maven")
+  "lma" '(maven-test-all t :which-key "run all tests")
   "ld" '(:ignore r :which-key "doc")
   "lds" '(lsp-ui-doc-show :which-key "doc show")
   "ldh" '(lsp-ui-doc-hide :which-key "doc hide"))
