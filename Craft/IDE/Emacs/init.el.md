@@ -9,6 +9,12 @@ This is our emacs config file.
 >[!abstract]- Lsp setup
 > - bear and gtags
 
+>[!warning]- To do list
+> - [ ] emacs not in afs
+> - [ ] Focus modline color
+> - [ ] Theme toggle
+> - [ ] java compilation
+
 ---
 
 ```elisp
