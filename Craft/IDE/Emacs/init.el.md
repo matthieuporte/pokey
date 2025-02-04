@@ -14,6 +14,7 @@ This is our emacs config file.
 > - [ ] Focus modline color
 > - [ ] Theme toggle
 > - [ ] java compilation
+> - [ ] pom.xml support
 
 ---
 
@@ -302,6 +303,7 @@ This is our emacs config file.
 (rune/leader-keys
   "l"  '(:ignore t :which-key "lsp")
   "lr" '(lsp-rename :which-key "rename")
+  "ls" '(lsp-workspace-restart :which-key "restart lsp")
   "la" '(lsp-execute-code-action :which-key "code action")
   "ln" '(flycheck-next-error :which-key "next error")
   "ld" '(:ignore r :which-key "doc")
