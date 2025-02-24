@@ -6,16 +6,6 @@ This is our emacs config file.
 
 >[!danger]- Inspiration
 
->[!abstract]- Lsp setup
-> - bear and gtags
-
->[!warning]- To do list
-> - [ ] emacs not in afs
-> - [ ] Focus modline color
-> - [ ] Theme toggle
-> - [ ] java compilation
-> - [ ] pom.xml support
-
 ---
 
 ```elisp
